@@ -184,7 +184,7 @@ const Testimonials = () => {
         </div>
 
         {/* All Testimonials Preview */}
-        <div className={`mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-6 transform transition-all duration-700 ${
+        <div className={`mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-6 transform transition-all duration-500 ${
           visibleItems.has('preview') ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
         }`}>
           {testimonials.map((testimonial, index) => (
