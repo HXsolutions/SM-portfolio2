@@ -122,7 +122,7 @@ const About = () => {
           </div>
 
           {/* Right Side - Skills */}
-          <div className={`space-y-6 transform transition-all duration-700 ${
+          <div className={`space-y-6 transform transition-all duration-500 ${
             visibleItems.has('skills') ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
           }`}>
             <h3 className="text-2xl font-bold mb-6">Core Expertise</h3>
