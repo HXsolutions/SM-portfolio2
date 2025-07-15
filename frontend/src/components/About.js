@@ -21,9 +21,9 @@ const About = () => {
           setIsVisible(true);
           // Animate section elements
           setTimeout(() => setVisibleItems(prev => new Set(prev).add('title')), 100);
-          setTimeout(() => setVisibleItems(prev => new Set(prev).add('content')), 300);
-          setTimeout(() => setVisibleItems(prev => new Set(prev).add('skills')), 500);
-          setTimeout(() => setVisibleItems(prev => new Set(prev).add('badges')), 700);
+          setTimeout(() => setVisibleItems(prev => new Set(prev).add('content')), 200);
+          setTimeout(() => setVisibleItems(prev => new Set(prev).add('skills')), 400);
+          setTimeout(() => setVisibleItems(prev => new Set(prev).add('badges')), 600);
         }
       },
       { threshold: 0.3 }
