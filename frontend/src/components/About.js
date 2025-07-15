@@ -26,7 +26,7 @@ const About = () => {
           setTimeout(() => setVisibleItems(prev => new Set(prev).add('badges')), 600);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1, rootMargin: '10px 0px' }
     );
 
     if (sectionRef.current) {
