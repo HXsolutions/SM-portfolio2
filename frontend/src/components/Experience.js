@@ -66,7 +66,7 @@ const Experience = () => {
                 <div className={`lg:w-1/2 ${
                   index % 2 === 0 ? 'lg:pr-8' : 'lg:pl-8'
                 } ml-12 lg:ml-0`}>
-                  <Card className={`transform transition-all duration-700 ${
+                  <Card className={`transform transition-all duration-500 ${
                     visibleItems.has(index) 
                       ? 'translate-y-0 opacity-100 scale-100' 
                       : 'translate-y-8 opacity-0 scale-95'
