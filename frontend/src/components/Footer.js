@@ -112,12 +112,6 @@ const Footer = () => {
                 <li>
                   <span className="text-sm text-muted-foreground">Brand Design</span>
                 </li>
-                <li>
-                  <span className="text-sm text-muted-foreground">App Development</span>
-                </li>
-                <li>
-                  <span className="text-sm text-muted-foreground">Digital Marketing</span>
-                </li>
               </ul>
             </div>
 
