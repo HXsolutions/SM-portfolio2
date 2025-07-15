@@ -29,7 +29,7 @@ const PortfolioSection = () => {
           setTimeout(() => setVisibleItems(prev => new Set(prev).add('cta')), 800);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1, rootMargin: '10px 0px' }
     );
 
     if (sectionRef.current) {
