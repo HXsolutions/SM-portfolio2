@@ -115,15 +115,15 @@ const Contact = () => {
               <Mail className="h-16 w-16 text-blue-500 animate-pulse" />
             </div>
             
-            <CardHeader>
+            <CardHeader className="pb-6">
               <CardTitle className="text-2xl">Send Me a Message</CardTitle>
               <p className="text-muted-foreground">
                 Fill out the form below and I'll respond within 24 hours.
               </p>
             </CardHeader>
             
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
+            <CardContent className="px-6 pb-6">
+              <form onSubmit={handleSubmit} className="space-y-6 w-full">
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="name">Name *</Label>
