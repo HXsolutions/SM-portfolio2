@@ -109,7 +109,7 @@ const Contact = () => {
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact Form */}
-          <Card className={`relative overflow-hidden transform transition-all duration-700 ${
+          <Card className={`relative overflow-hidden transform transition-all duration-500 ${
             visibleItems.has('form') ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
           }`}>
             {/* Floating envelope animation */}
