@@ -62,7 +62,7 @@ const Services = () => {
           {services.map((service, index) => (
             <Card 
               key={service.id}
-              className={`group relative overflow-hidden transition-all duration-500 cursor-pointer transform ${
+              className={`group relative overflow-hidden transition-all duration-400 cursor-pointer transform ${
                 visibleItems.has(`card-${index}`) ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-8 opacity-0 scale-95'
               } ${
                 hoveredCard === service.id 
