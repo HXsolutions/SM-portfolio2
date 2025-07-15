@@ -42,7 +42,7 @@ const Contact = () => {
           setTimeout(() => setVisibleItems(prev => new Set(prev).add('contact')), 400);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1, rootMargin: '10px 0px' }
     );
 
     if (sectionRef.current) {
