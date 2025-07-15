@@ -133,7 +133,7 @@ const Testimonials = () => {
           </Card>
 
           {/* Navigation Controls */}
-          <div className={`flex items-center justify-center mt-8 space-x-4 transform transition-all duration-700 ${
+          <div className={`flex items-center justify-center mt-8 space-x-4 transform transition-all duration-500 ${
             visibleItems.has('controls') ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
           }`}>
             <Button
