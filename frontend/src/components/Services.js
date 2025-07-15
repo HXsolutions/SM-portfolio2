@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
@@ -7,11 +7,37 @@ import { services } from '../data/mockData';
 
 const Services = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
+  const [visibleItems, setVisibleItems] = useState(new Set());
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // Animate title first
+          setTimeout(() => setVisibleItems(prev => new Set(prev).add('title')), 100);
+          // Then animate cards with stagger
+          services.forEach((_, index) => {
+            setTimeout(() => {
+              setVisibleItems(prev => new Set(prev).add(`card-${index}`));
+            }, 300 + index * 100);
+          });
+          // Finally animate CTA
+          setTimeout(() => setVisibleItems(prev => new Set(prev).add('cta')), 800);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const handleServiceClick = (service) => {
-    // Mock functionality - in a real app, this might navigate to a service detail page
     console.log(`Selected service: ${service.title}`);
-    // Could also scroll to contact form or open a modal
     const contactSection = document.querySelector('#contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
@@ -19,9 +45,11 @@ const Services = () => {
   };
 
   return (
-    <section id="services" className="py-20 bg-background">
+    <section id="services" ref={sectionRef} className="py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transform transition-all duration-700 ${
+          visibleItems.has('title') ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+        }`}>
           <h2 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Services
           </h2>
@@ -31,10 +59,12 @@ const Services = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service) => (
+          {services.map((service, index) => (
             <Card 
               key={service.id}
-              className={`group relative overflow-hidden transition-all duration-300 cursor-pointer ${
+              className={`group relative overflow-hidden transition-all duration-500 cursor-pointer transform ${
+                visibleItems.has(`card-${index}`) ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-8 opacity-0 scale-95'
+              } ${
                 hoveredCard === service.id 
                   ? 'scale-105 shadow-2xl' 
                   : 'hover:scale-102 hover:shadow-xl'
@@ -70,8 +100,8 @@ const Services = () => {
                       What's Included
                     </h4>
                     <ul className="space-y-1">
-                      {service.features.map((feature, index) => (
-                        <li key={index} className="flex items-center space-x-2 text-sm">
+                      {service.features.map((feature, featureIndex) => (
+                        <li key={featureIndex} className="flex items-center space-x-2 text-sm">
                           <Check className="h-4 w-4 text-green-500 flex-shrink-0" />
                           <span>{feature}</span>
                         </li>
@@ -106,7 +136,9 @@ const Services = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="text-center mt-16">
+        <div className={`text-center mt-16 transform transition-all duration-700 ${
+          visibleItems.has('cta') ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+        }`}>
           <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-8 max-w-2xl mx-auto">
             <h3 className="text-2xl font-bold mb-4">Ready to Scale Your Business?</h3>
             <p className="text-muted-foreground mb-6">
