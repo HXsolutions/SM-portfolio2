@@ -88,7 +88,7 @@ const PortfolioSection = () => {
           {filteredProjects.map((project, index) => (
             <Card
               key={project.id}
-              className={`group relative overflow-hidden transition-all duration-500 cursor-pointer transform ${
+              className={`group relative overflow-hidden transition-all duration-400 cursor-pointer transform ${
                 visibleItems.has(`project-${index}`) ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-8 opacity-0 scale-95'
               } ${
                 hoveredProject === project.id 
