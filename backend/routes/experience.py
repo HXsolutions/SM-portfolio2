@@ -4,7 +4,7 @@ from datetime import datetime
 import os
 from motor.motor_asyncio import AsyncIOMotorClient
 
-from ..models import Experience, ExperienceCreate, MessageResponse
+from models import Experience, ExperienceCreate, MessageResponse
 
 router = APIRouter()
 
