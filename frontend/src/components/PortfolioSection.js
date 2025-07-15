@@ -52,7 +52,7 @@ const PortfolioSection = () => {
   return (
     <section id="portfolio" ref={sectionRef} className="py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`text-center mb-16 transform transition-all duration-700 ${
+        <div className={`text-center mb-16 transform transition-all duration-500 ${
           visibleItems.has('title') ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
         }`}>
           <h2 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
