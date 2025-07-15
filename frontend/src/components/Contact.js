@@ -87,8 +87,6 @@ const Contact = () => {
     'Shopify Store Development',
     'Amazon Store Setup',
     'Brand Design',
-    'App Development',
-    'SEO & Digital Marketing',
     'E-commerce Training',
     'Other'
   ];
