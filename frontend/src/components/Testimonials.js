@@ -84,7 +84,7 @@ const Testimonials = () => {
 
         <div className="relative max-w-4xl mx-auto">
           {/* Main Testimonial Display */}
-          <Card className={`relative overflow-hidden transform transition-all duration-700 ${
+          <Card className={`relative overflow-hidden transform transition-all duration-500 ${
             visibleItems.has('main') ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-8 opacity-0 scale-95'
           }`}>
             {/* Floating 3D Quote Icons */}
