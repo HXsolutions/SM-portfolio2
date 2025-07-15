@@ -18,15 +18,15 @@ const PortfolioSection = () => {
           // Animate title first
           setTimeout(() => setVisibleItems(prev => new Set(prev).add('title')), 100);
           // Then animate filters
-          setTimeout(() => setVisibleItems(prev => new Set(prev).add('filters')), 300);
+          setTimeout(() => setVisibleItems(prev => new Set(prev).add('filters')), 200);
           // Then animate projects with stagger
           filteredProjects.forEach((_, index) => {
             setTimeout(() => {
               setVisibleItems(prev => new Set(prev).add(`project-${index}`));
-            }, 500 + index * 150);
+            }, 400 + index * 120);
           });
           // Finally animate CTA
-          setTimeout(() => setVisibleItems(prev => new Set(prev).add('cta')), 1000);
+          setTimeout(() => setVisibleItems(prev => new Set(prev).add('cta')), 800);
         }
       },
       { threshold: 0.3 }
