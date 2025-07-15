@@ -148,6 +148,24 @@ h1, h2, h3, h4, h5, h6 {
   h3 {
     font-size: 1.5rem;
   }
+  
+  /* Improve mobile section visibility */
+  section {
+    min-height: auto;
+    padding: 1rem 0;
+  }
+  
+  /* Ensure cards are properly visible on mobile */
+  .card {
+    margin-bottom: 1rem;
+  }
+  
+  /* Optimize animations for mobile */
+  .animate-fade-in,
+  .animate-slide-in-left,
+  .animate-slide-in-right {
+    animation-duration: 0.4s;
+  }
 }
 
 /* Dark mode enhancements */
