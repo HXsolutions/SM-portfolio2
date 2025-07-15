@@ -17,13 +17,13 @@ const Testimonials = () => {
           // Animate title first
           setTimeout(() => setVisibleItems(prev => new Set(prev).add('title')), 100);
           // Then animate main testimonial
-          setTimeout(() => setVisibleItems(prev => new Set(prev).add('main')), 300);
+          setTimeout(() => setVisibleItems(prev => new Set(prev).add('main')), 200);
           // Then animate controls
-          setTimeout(() => setVisibleItems(prev => new Set(prev).add('controls')), 500);
+          setTimeout(() => setVisibleItems(prev => new Set(prev).add('controls')), 400);
           // Finally animate preview cards
-          setTimeout(() => setVisibleItems(prev => new Set(prev).add('preview')), 700);
+          setTimeout(() => setVisibleItems(prev => new Set(prev).add('preview')), 600);
           // And CTA
-          setTimeout(() => setVisibleItems(prev => new Set(prev).add('cta')), 900);
+          setTimeout(() => setVisibleItems(prev => new Set(prev).add('cta')), 800);
         }
       },
       { threshold: 0.3 }
