@@ -15,7 +15,7 @@ const Hero = () => {
       if (currentIndex < text.length) {
         setDisplayText(text.slice(0, currentIndex + 1));
         currentIndex++;
-        setTimeout(typeText, 50);
+        setTimeout(typeText, 35);
       } else {
         setIsTypingComplete(true);
       }
