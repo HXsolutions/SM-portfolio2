@@ -26,7 +26,7 @@ const Services = () => {
           setTimeout(() => setVisibleItems(prev => new Set(prev).add('cta')), 650);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.1 }
     );
 
     if (sectionRef.current) {
