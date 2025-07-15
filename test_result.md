@@ -151,6 +151,9 @@ Continuation request to improve the portfolio application:
       - working: true
         agent: "main"
         comment: "Successfully removed App Development and SEO & Digital Marketing from contact form service dropdown"
+      - working: true
+        agent: "testing"
+        comment: "VERIFIED: Contact form dropdown correctly shows: Business Consulting, Shopify Store Development, Amazon Store Setup, Brand Design, E-commerce Training, Other. App Development and SEO & Digital Marketing successfully removed."
 
   - task: "Increase animation speed across all components"
     implemented: true
