@@ -136,6 +136,9 @@ Continuation request to improve the portfolio application:
       - working: true
         agent: "main"
         comment: "Successfully removed App Development and Digital Marketing from footer services list"
+      - working: true
+        agent: "testing"
+        comment: "VERIFIED: Footer services correctly show only: Business Consulting, Shopify Development, Amazon Setup, Brand Design. App Development and Digital Marketing successfully removed from footer."
 
   - task: "Update contact form service options"
     implemented: true
