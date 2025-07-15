@@ -135,7 +135,7 @@ const About = () => {
                   </div>
                   <div className="w-full bg-muted rounded-full h-2">
                     <div 
-                      className="bg-gradient-to-r from-blue-600 to-purple-600 h-2 rounded-full transition-all duration-1000 ease-out"
+                      className="bg-gradient-to-r from-blue-600 to-purple-600 h-2 rounded-full transition-all duration-800 ease-out"
                       style={{ 
                         width: (isVisible && visibleItems.has('skills')) ? `${skill.level}%` : '0%',
                         transitionDelay: `${index * 100}ms`
