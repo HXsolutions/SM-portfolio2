@@ -121,6 +121,9 @@ Continuation request to improve the portfolio application:
       - working: true
         agent: "main"
         comment: "Successfully removed services with id 5 (App Development) and id 6 (SEO & Digital Marketing) from mockData.js"
+      - working: true
+        agent: "testing"
+        comment: "VERIFIED: Only 4 services displayed correctly: Business Consulting, Shopify Store Development, Amazon Store Setup, Brand Design. App Development and SEO & Digital Marketing successfully removed."
 
   - task: "Update footer to remove App Development and Digital Marketing references"
     implemented: true
