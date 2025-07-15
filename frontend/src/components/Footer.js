@@ -32,9 +32,11 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-muted/50 border-t border-border">
+    <footer ref={sectionRef} className="bg-muted/50 border-t border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="py-12">
+        <div className={`py-12 transform transition-all duration-500 ${
+          visibleItems.has('content') ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+        }`}>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Brand & Contact */}
             <div className="space-y-4">
