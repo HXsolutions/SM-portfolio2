@@ -84,7 +84,7 @@ const About = () => {
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Side - About Content */}
-          <div className={`space-y-6 transform transition-all duration-700 ${
+          <div className={`space-y-6 transform transition-all duration-500 ${
             visibleItems.has('content') ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
           }`}>
             <div className="prose prose-lg dark:prose-invert max-w-none">
