@@ -20,10 +20,10 @@ const Services = () => {
           services.forEach((_, index) => {
             setTimeout(() => {
               setVisibleItems(prev => new Set(prev).add(`card-${index}`));
-            }, 300 + index * 100);
+            }, 250 + index * 80);
           });
           // Finally animate CTA
-          setTimeout(() => setVisibleItems(prev => new Set(prev).add('cta')), 800);
+          setTimeout(() => setVisibleItems(prev => new Set(prev).add('cta')), 650);
         }
       },
       { threshold: 0.3 }
