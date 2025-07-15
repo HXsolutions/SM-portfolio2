@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
@@ -27,7 +27,30 @@ const Contact = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [visibleItems, setVisibleItems] = useState(new Set());
+  const sectionRef = useRef(null);
   const { toast } = useToast();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // Animate title first
+          setTimeout(() => setVisibleItems(prev => new Set(prev).add('title')), 100);
+          // Then animate form and contact info
+          setTimeout(() => setVisibleItems(prev => new Set(prev).add('form')), 300);
+          setTimeout(() => setVisibleItems(prev => new Set(prev).add('contact')), 500);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -71,9 +94,11 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-background">
+    <section id="contact" ref={sectionRef} className="py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transform transition-all duration-700 ${
+          visibleItems.has('title') ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+        }`}>
           <h2 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Let's Work Together
           </h2>
@@ -84,7 +109,9 @@ const Contact = () => {
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact Form */}
-          <Card className="relative overflow-hidden">
+          <Card className={`relative overflow-hidden transform transition-all duration-700 ${
+            visibleItems.has('form') ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+          }`}>
             {/* Floating envelope animation */}
             <div className="absolute top-6 right-6 opacity-10">
               <Mail className="h-16 w-16 text-blue-500 animate-pulse" />
@@ -193,7 +220,9 @@ const Contact = () => {
           </Card>
 
           {/* Contact Information */}
-          <div className="space-y-8">
+          <div className={`space-y-8 transform transition-all duration-700 ${
+            visibleItems.has('contact') ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+          }`}>
             {/* Quick Contact */}
             <Card>
               <CardHeader>
