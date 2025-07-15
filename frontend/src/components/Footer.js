@@ -188,9 +188,15 @@ const Footer = () => {
             </div>
             
             <div className="flex items-center space-x-1 text-sm text-muted-foreground">
-              <span>Made with</span>
-              <Heart className="h-4 w-4 text-red-500 fill-red-500" />
-              <span>for your success</span>
+              <span>Powered by</span>
+              <a 
+                href="https://haxxcelsolutions.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-500 transition-colors duration-200 font-medium"
+              >
+                Haxxcel Solutions
+              </a>
             </div>
           </div>
         </div>
