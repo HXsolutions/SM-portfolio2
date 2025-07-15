@@ -11,6 +11,9 @@ from routes.contact import router as contact_router
 from routes.portfolio import router as portfolio_router
 from routes.testimonials import router as testimonials_router
 from routes.services import router as services_router
+from routes.stats import router as stats_router
+from routes.experience import router as experience_router
+from routes.skills import router as skills_router
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -44,6 +47,9 @@ api_router.include_router(contact_router, tags=["Contact"])
 api_router.include_router(portfolio_router, tags=["Portfolio"])
 api_router.include_router(testimonials_router, tags=["Testimonials"])
 api_router.include_router(services_router, tags=["Services"])
+api_router.include_router(stats_router, tags=["Stats"])
+api_router.include_router(experience_router, tags=["Experience"])
+api_router.include_router(skills_router, tags=["Skills"])
 
 # Include the router in the main app
 app.include_router(api_router)
@@ -75,6 +81,9 @@ async def startup_event():
     await db.portfolio.create_index("is_featured")
     await db.testimonials.create_index("is_featured")
     await db.services.create_index("is_active")
+    await db.experience.create_index("order")
+    await db.skills.create_index("category")
+    await db.skills.create_index("level")
     
     logger.info("Database indexes created successfully")
 
