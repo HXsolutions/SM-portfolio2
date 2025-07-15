@@ -147,7 +147,7 @@ const About = () => {
             </div>
 
             {/* Certifications/Badges */}
-            <div className={`mt-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg transform transition-all duration-700 ${
+            <div className={`mt-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg transform transition-all duration-500 ${
               visibleItems.has('badges') ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}>
               <h4 className="font-semibold mb-3">Professional Highlights</h4>
