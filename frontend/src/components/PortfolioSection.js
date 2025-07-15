@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
@@ -8,6 +8,36 @@ import { portfolio } from '../data/mockData';
 const PortfolioSection = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [hoveredProject, setHoveredProject] = useState(null);
+  const [visibleItems, setVisibleItems] = useState(new Set());
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // Animate title first
+          setTimeout(() => setVisibleItems(prev => new Set(prev).add('title')), 100);
+          // Then animate filters
+          setTimeout(() => setVisibleItems(prev => new Set(prev).add('filters')), 300);
+          // Then animate projects with stagger
+          filteredProjects.forEach((_, index) => {
+            setTimeout(() => {
+              setVisibleItems(prev => new Set(prev).add(`project-${index}`));
+            }, 500 + index * 150);
+          });
+          // Finally animate CTA
+          setTimeout(() => setVisibleItems(prev => new Set(prev).add('cta')), 1000);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const categories = ['All', 'E-commerce', 'Amazon', 'Development', 'Branding'];
 
@@ -16,15 +46,15 @@ const PortfolioSection = () => {
     : portfolio.filter(project => project.category === selectedCategory);
 
   const handleProjectView = (project) => {
-    // Mock functionality - in a real app, this might open a detailed view
     console.log(`Viewing project: ${project.title}`);
-    // Could open a modal, navigate to project detail, etc.
   };
 
   return (
-    <section id="portfolio" className="py-20 bg-background">
+    <section id="portfolio" ref={sectionRef} className="py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transform transition-all duration-700 ${
+          visibleItems.has('title') ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+        }`}>
           <h2 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Portfolio
           </h2>
@@ -34,7 +64,9 @@ const PortfolioSection = () => {
         </div>
 
         {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        <div className={`flex flex-wrap justify-center gap-3 mb-12 transform transition-all duration-700 ${
+          visibleItems.has('filters') ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+        }`}>
           {categories.map((category) => (
             <Button
               key={category}
@@ -53,10 +85,12 @@ const PortfolioSection = () => {
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
-          {filteredProjects.map((project) => (
+          {filteredProjects.map((project, index) => (
             <Card
               key={project.id}
-              className={`group relative overflow-hidden transition-all duration-300 cursor-pointer ${
+              className={`group relative overflow-hidden transition-all duration-500 cursor-pointer transform ${
+                visibleItems.has(`project-${index}`) ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-8 opacity-0 scale-95'
+              } ${
                 hoveredProject === project.id 
                   ? 'scale-105 shadow-2xl' 
                   : 'hover:scale-102 hover:shadow-xl'
@@ -127,8 +161,8 @@ const PortfolioSection = () => {
                       Technologies Used
                     </h4>
                     <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech, index) => (
-                        <Badge key={index} variant="outline" className="text-xs">
+                      {project.technologies.map((tech, techIndex) => (
+                        <Badge key={techIndex} variant="outline" className="text-xs">
                           {tech}
                         </Badge>
                       ))}
@@ -146,7 +180,9 @@ const PortfolioSection = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="text-center mt-16">
+        <div className={`text-center mt-16 transform transition-all duration-700 ${
+          visibleItems.has('cta') ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+        }`}>
           <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-8 max-w-2xl mx-auto">
             <h3 className="text-2xl font-bold mb-4">Ready to See Similar Results?</h3>
             <p className="text-muted-foreground mb-6">
