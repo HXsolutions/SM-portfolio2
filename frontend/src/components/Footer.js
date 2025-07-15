@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { personalInfo } from '../data/mockData';
-import { Mail, Phone, MapPin, Linkedin, ExternalLink, Heart } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, ExternalLink } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
