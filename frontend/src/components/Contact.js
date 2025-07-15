@@ -38,8 +38,8 @@ const Contact = () => {
           // Animate title first
           setTimeout(() => setVisibleItems(prev => new Set(prev).add('title')), 100);
           // Then animate form and contact info
-          setTimeout(() => setVisibleItems(prev => new Set(prev).add('form')), 300);
-          setTimeout(() => setVisibleItems(prev => new Set(prev).add('contact')), 500);
+          setTimeout(() => setVisibleItems(prev => new Set(prev).add('form')), 200);
+          setTimeout(() => setVisibleItems(prev => new Set(prev).add('contact')), 400);
         }
       },
       { threshold: 0.3 }
