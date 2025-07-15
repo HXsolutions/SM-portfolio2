@@ -51,22 +51,7 @@ export const services = [
     features: ["Logo Design", "Brand Guidelines", "Marketing Materials", "Social Media Assets"],
     price: "Starting at $800"
   },
-  {
-    id: 5,
-    title: "App Development",
-    description: "Custom mobile and web applications for iOS, Android, and web platforms",
-    icon: "📱",
-    features: ["iOS Development", "Android Development", "Web Apps", "API Integration"],
-    price: "Starting at $5,000"
-  },
-  {
-    id: 6,
-    title: "SEO & Digital Marketing",
-    description: "Comprehensive digital marketing strategies to boost your online presence",
-    icon: "📈",
-    features: ["SEO Optimization", "Content Marketing", "Social Media", "PPC Advertising"],
-    price: "Starting at $1,000/month"
-  }
+
 ];
 
 export const experience = [
