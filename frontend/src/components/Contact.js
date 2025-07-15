@@ -220,7 +220,7 @@ const Contact = () => {
           </Card>
 
           {/* Contact Information */}
-          <div className={`space-y-8 transform transition-all duration-700 ${
+          <div className={`space-y-8 transform transition-all duration-500 ${
             visibleItems.has('contact') ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
           }`}>
             {/* Quick Contact */}
