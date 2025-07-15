@@ -14,18 +14,29 @@ const Experience = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const index = parseInt(entry.target.getAttribute('data-index'));
-            setVisibleItems(prev => new Set(prev).add(index));
+            if (!isNaN(index)) {
+              setVisibleItems(prev => new Set(prev).add(index));
+            }
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1, rootMargin: '10px 0px' }
     );
 
-    // Observe all timeline items
-    const timelineItems = document.querySelectorAll('.timeline-item');
-    timelineItems.forEach(item => observer.observe(item));
+    // Use a timeout to ensure DOM is ready
+    const timeoutId = setTimeout(() => {
+      const timelineItems = document.querySelectorAll('.timeline-item');
+      timelineItems.forEach(item => {
+        if (item) {
+          observer.observe(item);
+        }
+      });
+    }, 100);
 
-    return () => observer.disconnect();
+    return () => {
+      clearTimeout(timeoutId);
+      observer.disconnect();
+    };
   }, []);
 
   return (
