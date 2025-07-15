@@ -1,9 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { personalInfo } from '../data/mockData';
 import { Mail, Phone, MapPin, Linkedin, ExternalLink, Heart } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const [visibleItems, setVisibleItems] = useState(new Set());
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setVisibleItems(prev => new Set(prev).add('content')), 100);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const handleNavClick = (href) => {
     const element = document.querySelector(href);
