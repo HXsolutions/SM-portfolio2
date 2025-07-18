@@ -1,0 +1,12 @@
+User-agent: *
+Disallow: /api/
+Disallow: /admin/
+Disallow: /*.json$
+Disallow: /*.xml$
+Allow: /
+
+# Sitemap
+Sitemap: https://sohaibmushtaq.com/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 1
