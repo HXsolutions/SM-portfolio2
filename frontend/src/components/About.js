@@ -22,8 +22,15 @@ const About = () => {
           // Animate section elements
           setTimeout(() => setVisibleItems(prev => new Set(prev).add('title')), 100);
           setTimeout(() => setVisibleItems(prev => new Set(prev).add('content')), 200);
-          setTimeout(() => setVisibleItems(prev => new Set(prev).add('skills')), 400);
-          setTimeout(() => setVisibleItems(prev => new Set(prev).add('badges')), 600);
+          
+          // Animate individual skills with stagger
+          skills.forEach((_, index) => {
+            setTimeout(() => {
+              setVisibleItems(prev => new Set(prev).add(`skill-${index}`));
+            }, 400 + index * 100);
+          });
+          
+          setTimeout(() => setVisibleItems(prev => new Set(prev).add('badges')), 400 + skills.length * 100 + 200);
         }
       },
       { threshold: 0.1, rootMargin: '10px 0px' }
