@@ -6,7 +6,11 @@ import os
 import logging
 from pathlib import Path
 
-# Import route modules
+# Load environment variables FIRST before importing routes
+ROOT_DIR = Path(__file__).parent
+load_dotenv(ROOT_DIR / '.env')
+
+# Import route modules AFTER loading .env
 from routes.contact import router as contact_router
 from routes.portfolio import router as portfolio_router
 from routes.testimonials import router as testimonials_router
@@ -14,9 +18,6 @@ from routes.services import router as services_router
 from routes.stats import router as stats_router
 from routes.experience import router as experience_router
 from routes.skills import router as skills_router
-
-ROOT_DIR = Path(__file__).parent
-load_dotenv(ROOT_DIR / '.env')
 
 # MongoDB connection
 mongo_url = os.environ['MONGO_URL']
