@@ -129,13 +129,13 @@ const About = () => {
           </div>
 
           {/* Right Side - Skills */}
-          <div className={`space-y-6 transform transition-all duration-500 ${
-            visibleItems.has('skills') ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-          }`}>
+          <div className="space-y-6">
             <h3 className="text-2xl font-bold mb-6">Core Expertise</h3>
             <div className="space-y-4">
               {skills.map((skill, index) => (
-                <div key={index} className="space-y-2">
+                <div key={index} className={`space-y-2 transform transition-all duration-500 ${
+                  visibleItems.has(`skill-${index}`) ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                }`}>
                   <div className="flex justify-between items-center">
                     <span className="font-medium">{skill.name}</span>
                     <Badge variant="secondary">{skill.level}%</Badge>
@@ -144,8 +144,8 @@ const About = () => {
                     <div 
                       className="bg-gradient-to-r from-blue-600 to-purple-600 h-2 rounded-full transition-all duration-800 ease-out"
                       style={{ 
-                        width: (isVisible && visibleItems.has('skills')) ? `${skill.level}%` : '0%',
-                        transitionDelay: `${index * 100}ms`
+                        width: visibleItems.has(`skill-${index}`) ? `${skill.level}%` : '0%',
+                        transitionDelay: '200ms'
                       }}
                     ></div>
                   </div>
