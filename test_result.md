@@ -236,17 +236,26 @@ Continuation request to improve the portfolio application:
         comment: "Integrated n8n chat widget with custom blue theme styling to match website design. Added chat container div and configured webhook URL with proper branding (Haxxcel Solutions AI)."
 
 ## backend:
-  - task: "No backend changes required"
+  - task: "Backend API endpoints testing and verification"
     implemented: true
-    working: "NA"
-    file: "N/A"
+    working: true
+    file: "/app/backend/server.py"
     stuck_count: 0
-    priority: "low"
+    priority: "high"
     needs_retesting: false
     status_history:
-      - working: "NA"
-        agent: "main"
-        comment: "This task only involved frontend changes, no backend modifications needed"
+      - working: false
+        agent: "testing"
+        comment: "Initial testing failed - backend service not starting due to environment variable loading order issue. Routes were trying to access MONGO_URL before .env file was loaded."
+      - working: false
+        agent: "testing"
+        comment: "Fixed environment variable loading by moving load_dotenv() before route imports in server.py. Backend started successfully but database was empty, causing some endpoints to return empty results."
+      - working: false
+        agent: "testing"
+        comment: "Seeded database with sample data using seed_database.py. Most endpoints working but /portfolio/categories and /skills/categories failing due to FastAPI route ordering issue - specific item routes were matching before categories routes."
+      - working: true
+        agent: "testing"
+        comment: "VERIFIED: Fixed route ordering issue by moving categories routes before specific item routes in both portfolio.py and skills.py. ALL 17 API endpoints now working correctly with 100% success rate. Services endpoint returns exactly 4 services as expected: Business Consulting, Shopify Store Development, Amazon Store Setup, Brand Design. Contact form, portfolio, testimonials, experience, skills, and stats endpoints all functioning properly."
 
 ## metadata:
   created_by: "main_agent"
