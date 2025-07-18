@@ -28,6 +28,15 @@ async def get_portfolio_items(category: Optional[str] = None, featured_only: boo
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error fetching portfolio items: {str(e)}")
 
+@router.get("/portfolio/categories", response_model=List[str])
+async def get_portfolio_categories():
+    """Get all unique portfolio categories"""
+    try:
+        categories = await db.portfolio.distinct("category")
+        return sorted(categories)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error fetching categories: {str(e)}")
+
 @router.get("/portfolio/{item_id}", response_model=PortfolioItem)
 async def get_portfolio_item(item_id: str):
     """Get specific portfolio item"""
