@@ -95,12 +95,3 @@ async def delete_skill(skill_id: str):
         return MessageResponse(message="Skill deleted successfully")
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error deleting skill: {str(e)}")
-
-@router.get("/skills/categories", response_model=List[str])
-async def get_skill_categories():
-    """Get all unique skill categories"""
-    try:
-        categories = await db.skills.distinct("category")
-        return sorted(categories)
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error fetching categories: {str(e)}")
