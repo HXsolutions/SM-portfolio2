@@ -256,6 +256,9 @@ Continuation request to improve the portfolio application:
 
 ## test_plan:
   current_focus:
+    - "SEO optimization verification"
+    - "Individual skill animations testing"
+    - "Chat widget functionality and theme testing"
     - "Mobile responsiveness verification"
     - "Animation speed testing"
     - "Service count verification"
