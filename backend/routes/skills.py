@@ -26,6 +26,15 @@ async def get_skills(category: str = None):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error fetching skills: {str(e)}")
 
+@router.get("/skills/categories", response_model=List[str])
+async def get_skill_categories():
+    """Get all unique skill categories"""
+    try:
+        categories = await db.skills.distinct("category")
+        return sorted(categories)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error fetching categories: {str(e)}")
+
 @router.get("/skills/{skill_id}", response_model=Skill)
 async def get_skill(skill_id: str):
     """Get specific skill"""
